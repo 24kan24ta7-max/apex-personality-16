@@ -140,34 +140,28 @@ const completedCards={
 };
 function artIndex(code){return Object.keys(legendMap).indexOf(code);}
 function setPortrait(code){
- const im=$("legendImage");im.style.display="none";
- let panel=document.getElementById("portraitPanel");
- if(!panel){panel=document.createElement("div");panel.id="portraitPanel";panel.className="portrait-panel";im.parentNode.insertBefore(panel,im);}
- panel.style.display="block";
- if(completedCards[code]){
-  panel.style.backgroundImage='url("'+completedCards[code]+'")';
-  panel.style.backgroundSize="100% 100%";
-  panel.style.backgroundPosition="center center";
-  panel.style.width="min(100%, 520px)";
-  panel.style.height="auto";
-  panel.style.aspectRatio="2 / 3";
-  panel.style.borderColor="#ed4538";
-  panel.parentElement.style.width="100%";
-  panel.parentElement.style.alignItems="center";
-  document.querySelector(".result-main").style.gridTemplateColumns="minmax(0, 1fr)";
-  document.querySelector(".result-main").style.justifyItems="center";
+ const im=$("legendImage");
+ const panel=document.getElementById("portraitPanel");
+ if(panel)panel.style.display="none";
+ const main=document.querySelector(".result-main");
+ const card=completedCards[code];
+ if(card){
+  im.src="./"+card+"?v=full-card-20261102";
+  im.alt=code+" "+legendMap[code].name+" の完成済み診断カード";
+  im.style.cssText="display:block!important;width:100%!important;max-width:520px!important;height:auto!important;max-height:none!important;object-fit:contain!important;border-radius:0!important;";
+  im.parentElement.style.width="100%";
+  main.style.gridTemplateColumns="minmax(0, 1fr)";
+  main.style.justifyItems="center";
  }else{
+  im.style.display="none";
+  im.removeAttribute("src");
+  let fallback=document.getElementById("portraitPanel");
+  if(!fallback){fallback=document.createElement("div");fallback.id="portraitPanel";fallback.className="portrait-panel";im.parentNode.insertBefore(fallback,im);}
   const i=artIndex(code);
-  panel.style.backgroundImage='url("apex_original_characters.webp")';
-  panel.style.width="240px";
-  panel.style.aspectRatio="auto";
-  panel.parentElement.style.width="";
-  document.querySelector(".result-main").style.gridTemplateColumns="";
-  document.querySelector(".result-main").style.justifyItems="";
-  panel.style.backgroundSize="400% 400%";
-  panel.style.backgroundPosition=(i%4*100/3)+"% "+(Math.floor(i/4)*100/3)+"%";
-  panel.style.height="280px";
-  panel.style.borderColor="#f0443570";
+  fallback.style.cssText='display:block;width:240px;height:280px;background-image:url("apex_original_characters.webp");background-size:400% 400%;background-position:'+(i%4*100/3)+'% '+(Math.floor(i/4)*100/3)+'%;';
+  im.parentElement.style.width="";
+  main.style.gridTemplateColumns="";
+  main.style.justifyItems="";
  }
 }
 function characterSvg(code){
