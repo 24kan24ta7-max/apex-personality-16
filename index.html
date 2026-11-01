@@ -146,13 +146,24 @@ function setPortrait(code){
  panel.style.display="block";
  if(completedCards[code]){
   panel.style.backgroundImage='url("'+completedCards[code]+'")';
-  panel.style.backgroundSize="contain";
+  panel.style.backgroundSize="100% 100%";
   panel.style.backgroundPosition="center center";
-  panel.style.height="360px";
+  panel.style.width="min(100%, 520px)";
+  panel.style.height="auto";
+  panel.style.aspectRatio="2 / 3";
   panel.style.borderColor="#ed4538";
+  panel.parentElement.style.width="100%";
+  panel.parentElement.style.alignItems="center";
+  document.querySelector(".result-main").style.gridTemplateColumns="minmax(0, 1fr)";
+  document.querySelector(".result-main").style.justifyItems="center";
  }else{
   const i=artIndex(code);
   panel.style.backgroundImage='url("apex_original_characters.webp")';
+  panel.style.width="240px";
+  panel.style.aspectRatio="auto";
+  panel.parentElement.style.width="";
+  document.querySelector(".result-main").style.gridTemplateColumns="";
+  document.querySelector(".result-main").style.justifyItems="";
   panel.style.backgroundSize="400% 400%";
   panel.style.backgroundPosition=(i%4*100/3)+"% "+(Math.floor(i/4)*100/3)+"%";
   panel.style.height="280px";
