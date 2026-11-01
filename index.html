@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080a13">
+<meta name="description" content="APEXプレイヤーの戦闘スタイルとリアルな性格を分析する、非公式オリジナル16タイプ診断。">
+<meta property="og:title" content="APEX PERSONALITY 16">
+<meta property="og:description" content="あなたの性格は、戦場でどう現れる？ 16タイプ診断">
+<title>APEX PERSONALITY 16 | プレイヤー性格診断</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap');
+:root{--bg:#080a13;--panel:#111626;--panel2:#171f32;--line:#29334b;--text:#f4f6ff;--muted:#9ba8c3;--cyan:#63e6ff;--violet:#a78bfa;--pink:#ff6eb4;--green:#75f0bd}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20234a 0,transparent 38%),radial-gradient(ellipse at 100% 30%,#102c3d 0,transparent 34%),var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+.wrap{width:min(900px,calc(100% - 32px));margin:auto;position:relative}.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid #ffffff18}.brand{font:800 18px 'Barlow Condensed',sans-serif;letter-spacing:2px}.brand span{color:var(--cyan)}.tag{font-size:10px;letter-spacing:2px;color:var(--muted);border:1px solid var(--line);padding:7px 10px;border-radius:30px}
+.hero{padding:76px 0 42px;text-align:center}.eyebrow{color:var(--cyan);font:700 12px 'Barlow Condensed',sans-serif;letter-spacing:4px}.hero h1{font:900 clamp(48px,10vw,88px)/.9 'Barlow Condensed',sans-serif;letter-spacing:1px;margin:18px 0 20px;text-shadow:0 0 35px #63e6ff35}.hero h1 span{color:var(--cyan)}.hero p{color:#c2cbe0;line-height:1.9;font-size:14px}.hero .sub{font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:3px;color:var(--muted);margin-top:22px}
+.panel{background:linear-gradient(145deg,#151d30ed,#0d1220f2);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,5vw,38px);box-shadow:0 24px 80px #0007;backdrop-filter:blur(10px)}
+.center{text-align:center}.kicker{font:700 12px 'Barlow Condensed',sans-serif;letter-spacing:3px;color:var(--cyan)}h2{font:800 30px 'Barlow Condensed',sans-serif;letter-spacing:1px;margin:10px 0 12px}.muted{color:var(--muted);font-size:13px;line-height:1.8}
+.btn{appearance:none;border:0;border-radius:10px;padding:15px 24px;background:linear-gradient(100deg,var(--cyan),#8bb8ff);color:#06101a;font-weight:800;font-size:14px;cursor:pointer;transition:.2s;box-shadow:0 8px 30px #63e6ff25}.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.btn.secondary{background:#1b253a;color:var(--text);border:1px solid var(--line);box-shadow:none}.btnrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:25px 0 0}.feature{padding:15px 10px;background:#ffffff06;border:1px solid #ffffff12;border-radius:12px}.feature b{display:block;font:700 20px 'Barlow Condensed';color:var(--cyan)}.feature small{font-size:11px;color:var(--muted)}
+#quiz,#result{display:none}.progress-head{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:12px}.progress{height:5px;background:#29334b;border-radius:9px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .25s}
+.qnum{font:700 12px 'Barlow Condensed';letter-spacing:3px;color:var(--cyan);margin-top:28px}.question{font-size:clamp(19px,4vw,25px);font-weight:800;line-height:1.55;margin:12px 0 24px}.answers{display:grid;gap:10px}.answer{width:100%;text-align:left;color:var(--text);background:#ffffff07;border:1px solid var(--line);padding:16px 17px;border-radius:12px;cursor:pointer;font:500 14px/1.6 'Noto Sans JP';transition:.18s}.answer:hover{border-color:var(--cyan);background:#63e6ff0d;transform:translateX(3px)}.answer:focus-visible,.btn:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.result-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.type-code{font:900 clamp(48px,12vw,78px)/1 'Barlow Condensed';letter-spacing:2px;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}.type-name{font-size:clamp(22px,5vw,34px);font-weight:800;margin:8px 0}.type-tagline{color:var(--cyan);font-size:13px;font-weight:700}.result-intro{font-size:14px;line-height:2;color:#d4dbee;margin:22px 0}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.chip{font-size:11px;color:#dce8ff;border:1px solid #3c4b68;background:#ffffff08;padding:7px 10px;border-radius:30px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.detail{background:#ffffff07;border:1px solid #ffffff12;padding:16px;border-radius:13px}.detail h3{font:700 12px 'Barlow Condensed';letter-spacing:2px;color:var(--cyan);margin:0 0 9px}.detail p{font-size:13px;line-height:1.8;color:#c7d0e5;margin:0}
+.compat{margin-top:14px;padding:17px;border:1px solid #a78bfa55;background:#a78bfa0d;border-radius:13px}.compat b{color:#c7b8ff}
+.result-actions{margin-top:24px}.fine{font-size:10px;color:#71809d;line-height:1.7;margin-top:24px}
+footer{text-align:center;padding:34px 0 45px;color:#71809d;font-size:10px;letter-spacing:1px}
+@media(max-width:600px){.hero{padding:55px 0 30px}.features{grid-template-columns:1fr 1fr 1fr}.grid2{grid-template-columns:1fr}.top{padding:16px 0}.tag{font-size:9px}.panel{border-radius:17px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand">APEX <span>PERSONALITY</span> 16</div><div class="tag">UNOFFICIAL FAN PROJECT</div></header>
+<main>
+<section id="home">
+<div class="hero"><div class="eyebrow">YOUR COMBAT PERSONALITY</div><h1>WHO ARE<br><span>YOU</span> IN APEX?</h1><p>あなたの性格は、戦場でどう現れる？<br>プレイスタイルとリアルな性格から、16タイプで分析。</p><div class="sub">16 TYPES / 4 DIMENSIONS / 24 QUESTIONS</div></div>
+<div class="panel center"><div class="kicker">PERSONALITY ANALYSIS</div><h2>戦場のあなたを、解き明かす。</h2><p class="muted">正解・不正解はありません。普段の自分に近い選択肢を選んでください。<br>所要時間：約3〜5分</p><div class="features"><div class="feature"><b>16</b><small>PERSONALITY TYPES</small></div><div class="feature"><b>24</b><small>QUESTIONS</small></div><div class="feature"><b>4</b><small>PERSONALITY AXES</small></div></div><div class="btnrow"><button class="btn" id="start">診断を開始する →</button></div><p class="fine">※本企画はファン制作の非公式診断です。ゲーム公式・運営元とは関係ありません。MBTIの公式診断でもありません。</p></div>
+</section>
+<section id="quiz" class="panel">
+<div class="progress-head"><span id="step">QUESTION 01 / 24</span><span id="pct">4%</span></div><div class="progress"><div class="bar" id="bar"></div></div>
+<div class="qnum" id="qnum">01 — COMBAT STYLE</div><div class="question" id="question"></div><div class="answers" id="answers"></div>
+</section>
+<section id="result" class="panel">
+<div class="result-top"><div class="kicker">YOUR PERSONALITY REPORT</div><div class="tag">APEX PERSONALITY 16</div></div>
+<div style="margin-top:28px"><div class="type-code" id="code"></div><div class="type-name" id="name"></div><div class="type-tagline" id="tagline"></div></div>
+<div class="chips" id="chips"></div><p class="result-intro" id="intro"></p>
+<div class="grid2"><div class="detail"><h3>IN THE ARENA / 戦場でのあなた</h3><p id="arena"></p></div><div class="detail"><h3>REAL LIFE / 普段のあなた</h3><p id="real"></p></div><div class="detail"><h3>YOUR STRENGTH / 強み</h3><p id="strength"></p></div><div class="detail"><h3>WATCH OUT / 気をつけたいこと</h3><p id="weakness"></p></div></div>
+<div class="compat"><b>TEAM COMPATIBILITY / 相性</b><p id="compat" class="muted" style="margin:8px 0 0"></p></div>
+<div class="btnrow result-actions"><button class="btn" id="share">Xで結果をシェア</button><button class="btn secondary" id="save">結果カードを保存</button><button class="btn secondary" id="retry">もう一度診断する</button></div>
+<p class="fine">この診断は自己理解と交流を目的としたオリジナルのエンタメコンテンツです。実際の性格やプレイスキルを科学的に測定するものではありません。レジェンドのおすすめはプレイ傾向からの参考例です。</p>
+</section>
+</main>
+<footer>APEX PERSONALITY 16 · FAN-MADE PERSONALITY TEST</footer>
+</div>
+<script>
+const questions = [
+["戦闘","敵を見つけた。味方の位置は少し遠い。どうする？",["チャンスなら先に仕掛ける","有利な位置を取ってから戦う"],0],
+["連携","野良の味方が別方向へ移動し始めた。",["自分の判断で動き、必要なら合流する","ピンや状況を見て足並みをそろえる"],1],
+["判断","初めて見る状況に遭遇したときは？",["まず感覚で動いて流れをつかむ","情報を集めてから判断する"],2],
+["計画","試合中、予定していたルートが塞がれた。",["その場で面白そうなルートに切り替える","安全な代替ルートを考えてから動く"],3],
+["戦闘","残り部隊が多い終盤。自分の気持ちは？",["キルチャンスを探して攻めたい","無理せず順位を上げることを優先したい"],0],
+["連携","味方がダウン。敵の位置は不明。",["状況を見て自分で最善と思う動きをする","味方の情報や合図を確認して動く"],1],
+["判断","武器やレジェンドを選ぶときは？",["使っていて楽しい・しっくりくるもの","性能やマップとの相性を考えたもの"],2],
+["計画","休日の予定はどちらに近い？",["気分で行き先や過ごし方を変える","事前に予定を決めておくと安心"],3],
+["戦闘","敵に詰められたときの反応は？",["撃ち返して主導権を取り返す","遮蔽物や退路を使って立て直す"],0],
+["連携","チームで勝ったとき、一番うれしいのは？",["自分の判断やプレイが決まったこと","全員で連携して勝ち切れたこと"],1],
+["判断","味方の提案に納得できないときは？",["直感的に違うと思えば別案を出す","理由や状況を整理してから伝える"],2],
+["計画","新しいことを始めるときは？",["とりあえず始めて、やりながら覚える","流れや必要なものを調べてから始める"],3],
+["戦闘","敵の体力が少ない。味方は回復中。",["一気に詰めてチャンスをつかむ","味方が整うまで待って確実に攻める"],0],
+["連携","ボイスチャットでの自分は？",["必要な情報を短く伝える。無言も平気","会話しながら雰囲気を作るのが好き"],1],
+["判断","負けた試合を振り返るときは？",["あの瞬間こうすればよかった、と感覚で考える","原因を分解して次の改善点を探す"],2],
+["計画","物事を進めるペースは？",["その時の集中力や気分に合わせる","決めた順番やペースで進める"],3],
+["戦闘","味方が消極的でチャンスを逃しそう。",["自分から動いて流れを変えたい","全体の安全を見て無理をしない"],0],
+["連携","友達と遊ぶとき、どんな役回り？",["自由に動いて場を盛り上げる","周りを見て全員が楽しめるようにする"],1],
+["判断","初対面の人と話すときは？",["その場の空気で自然に話題を広げる","相手の反応を見て慎重に話す"],2],
+["計画","大事な目標ができたら？",["まず一歩動いて勢いをつける","達成までの道筋を立てて進む"],3],
+["戦闘","自分のプレイを一言で表すなら？",["攻めて状況を動かすタイプ","守ってチャンスを待つタイプ"],0],
+["連携","チーム内で意見が分かれたら？",["自分の考えをはっきり伝える","全員の意見を聞いて落としどころを探す"],1],
+["判断","ピンチのときに頼りにするのは？",["経験からくる直感","見えている情報と確率"],2],
+["計画","試合後に次の試合へ行くときは？",["気持ちを切り替えてすぐキューを入れる","少し振り返ってから次に進む"],3]
+];
+const axes = [
+{labels:["BREAK / 突破型","HOLD / 堅守型"],codes:["R","G"]},
+{labels:["SOLO / 自律型","LINK / 連携型"],codes:["S","C"]},
+{labels:["INSTINCT / 直感型","ANALYSIS / 分析型"],codes:["I","A"]},
+{labels:["FLEX / 柔軟型","TACTIC / 計画型"],codes:["F","T"]}
+];
+const typeNames = {"RSIF":["フリースタイル・レイダー","直感で戦場を切り開く自由人","決断が速く、チャンスを見つけると一気に動く。自分の感覚を信じる冒険家。","敵の隙を見つけると即行動。機動力を活かし、戦況を動かすのが得意。","好奇心旺盛で行動力がある。新しいことにも臆せず飛び込める。","先走りすぎると味方との距離が開きがち。","柔軟に支えてくれる連携型。レジェンド候補：オクタン、レイス"],"RSIT":["アグレッシブ・ストライカー","勝負所を逃さない攻撃的な実行者","目標を決めたら一直線。勢いだけでなく、自分なりの勝ち筋も持っている。","攻めるタイミングを決め、先手を取って主導権を握る。","決断力と集中力。プレッシャーの中でも前に出られる。","勝ち筋にこだわりすぎると柔軟さを失うことも。","状況を広く見てくれる分析型。レジェンド候補：バンガロール、レヴナント"],"RSAF":["ソロ・タクティシャン","自分の判断で勝機を組み立てる戦術家","周囲に流されず、状況を読んで自分の最適解を探す。","孤立しない範囲でポジションを作り、敵の動きを見て仕掛ける。","観察力と自立心。冷静に自分の役割を選べる。","考えを共有しないと、味方に意図が伝わりにくい。","意思疎通が得意な連携型。レジェンド候補：ブラッドハウンド、ヴァルキリー"],"RSAT":["プレシジョン・ハンター","計算された一手で仕留める狩人","勝つための道筋を考え、必要な場面では大胆に動く。","射線や距離を管理し、勝負できる瞬間を見極める。","分析力と実行力。準備したことを形にできる。","最適解を探しすぎて、動き出しが遅れることも。","勢いを作ってくれる突破型。レジェンド候補：バリスティック、パスファインダー"],"RCIF":["チーム・ブレイカー","仲間と勢いを作るムードメーカー","人との関わりから力を発揮する。楽しい空気と勝負勘を両立するタイプ。","味方と声を掛け合いながらテンポよく攻める。","親しみやすさと適応力。チームの空気を明るくできる。","盛り上がると周囲の状況確認を忘れがち。","冷静に状況整理してくれる分析型。レジェンド候補：バンガロール、コンジット"],"RCIT":["フロントライン・リーダー","仲間を率いて突破口を開く先導者","人を巻き込みながら目標へ進む。決断とコミュニケーションが強み。","味方とタイミングを合わせ、先頭で戦闘を仕掛ける。","リーダーシップと責任感。チームを前進させられる。","自分のペースを味方にも求めすぎないように。","慎重にブレーキをかけてくれるタイプ。レジェンド候補：ニューキャッスル、バンガロール"],"RCAF":["バトル・コーディネーター","空気を読み、戦況を動かす連携派","周囲の反応を敏感に感じ取り、直感的にチームの流れを作る。","味方の動きに合わせ、攻守の切り替えを素早く行う。","共感力と瞬発的な判断。仲間の変化に気づきやすい。","味方を優先しすぎて自分の判断を後回しにすることも。","自分の軸を持つ自律型。レジェンド候補：ライフライン、ミラージュ"],"RCAT":["TACTICAL TEAM-LEAD","連携と判断で勝ちを引き寄せる指揮役","状況を整理し、チームが動きやすい選択肢を作る。","戦闘前の準備と声掛けで、チームの勝率を高める。","計画性と調整力。複数の視点から物事を考えられる。","完璧な連携を求めすぎると疲れてしまう。","直感で動ける柔軟型。レジェンド候補：クリプト、ニューキャッスル"],"GSIF":["ラストスタンド","土壇場で粘り強さを見せる逆転屋","簡単には諦めず、追い込まれた場面で集中力を発揮する。","不利な状況でも逃げ道や反撃の機会を探す。","粘り強さと度胸。最後まで可能性を捨てない。","引き際を見誤ると、立て直す機会を失うことも。","状況を整理してくれる計画型。レジェンド候補：レイス、マッドマギー"],"GSIT":["ディフェンシブ・デュエリスト","守りから勝負を作る堅実な挑戦者","無茶はしないが、勝負どころでは強い意志を見せる。","遮蔽物や有利ポジションを活かし、確実な戦闘を選ぶ。","忍耐力と芯の強さ。プレッシャーにも流されにくい。","慎重になりすぎると好機を逃すことも。","積極的にチャンスを作るタイプ。レジェンド候補：レイス、ジブラルタル"],"GSAF":["ソロ・センチネル","静かに盤面を支配する観察者","自分のペースを保ち、細かな変化から本質を見抜く。","ポジションと情報を重視し、無駄な戦闘を避ける。","洞察力と自制心。状況を俯瞰して判断できる。","慎重さが強く出ると、チームとの温度差が生まれる。","行動を後押ししてくれる連携型。レジェンド候補：ワットソン、ランパート"],"GSAT":["ゾーン・コントローラー","安全圏を設計する冷静な司令塔","リスクを見極め、長期的な視点で成果を積み上げる。","安置や射線を読み、戦う場所とタイミングを管理する。","戦略性と安定感。大局を見て選択できる。","慎重な判断が、時に消極的に見られることも。","突破力のあるタイプ。レジェンド候補：コースティック、ワットソン"],"GCIF":["ピースメーカー","仲間を守りながら流れをつなぐ調和役","周囲の空気を大切にし、柔らかく状況に適応する。","味方の状態を見ながら、無理のない戦闘を選ぶ。","協調性と柔軟性。チームの安心感につながる。","遠慮しすぎると、自分の希望を伝えにくい。","決断を後押ししてくれるタイプ。レジェンド候補：ライフライン、コンジット"],"GCIT":["スクワッド・ガーディアン","仲間のために最後まで戦う守護者","責任感が強く、身近な人を支えることにやりがいを感じる。","味方のカバーや蘇生、部隊全体の安全を重視する。","誠実さと責任感。信頼される存在になりやすい。","背負い込みすぎて自分の余裕を失わないように。","自由な発想で流れを変えるタイプ。レジェンド候補：ニューキャッスル、ジブラルタル"],"GCAF":["サポート・インテュイター","仲間の変化を察知する感覚派サポーター","人の気持ちや場の雰囲気を自然に読み取る。","味方のピンチに気づき、直感的にカバーへ向かう。","気配りと共感力。人の小さな変化に気づける。","自分の疲れや本音を後回しにしがち。","自分の判断をはっきり示すタイプ。レジェンド候補：ライフライン、ミラージュ"],"GCAT":["ミッション・キーパー","チームの目標を守り抜く堅実なまとめ役","一度決めたことを大切にし、周囲と協力して着実に進める。","部隊の役割や動きを整え、安定した試合運びを支える。","信頼性と継続力。最後までやり遂げる力がある。","変化への対応を後回しにしないこと。","大胆に変化を起こす柔軟型。レジェンド候補：ブラッドハウンド、コースティック"]};
+let index=0, scores=[0,0,0,0], answers=[];
+const $=id=>document.getElementById(id);
+function show(id){['home','quiz','result'].forEach(x=>$(x).style.display=x===id?'block':'none');window.scrollTo({top:0,behavior:'smooth'});}
+$('start').onclick=()=>{index=0;scores=[0,0,0,0];answers=[];renderQ();show('quiz')};
+function renderQ(){
+ const q=questions[index],n=String(index+1).padStart(2,'0');$('step').textContent=`QUESTION ${n} / ${questions.length}`;$('pct').textContent=Math.round((index+1)/questions.length*100)+'%';$('bar').style.width=((index+1)/questions.length*100)+'%';$('qnum').textContent=n+' — '+q[0]+' / PERSONALITY AXIS';$('question').textContent=q[1];$('answers').innerHTML='';
+ q[2].forEach((a,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=(i===0?'A  /  ':'B  /  ')+a;b.onclick=()=>{scores[q[3]]+=i===0?1:-1;answers.push(i);index++;if(index<questions.length)renderQ();else showResult()};$('answers').appendChild(b)});
+}
+function getCode(){
+ let c='';for(let i=0;i<4;i++)c+=scores[i]>=0?axes[i].codes[0]:axes[i].codes[1];
+ // Unique code for 16 combinations, with each axis represented by the first/second letter.
+ return c;
+}
+function getType(code){ return typeNames[code] || typeNames['RSIF']; }
+function showResult(){
+ const code=getCode(),d=getType(code);$('code').textContent=code;$('name').textContent=d[0];$('tagline').textContent=d[1];$('intro').textContent=d[2];$('arena').textContent=d[3];$('real').textContent=d[2];$('strength').textContent=d[4];$('weakness').textContent=d[5];$('compat').textContent=d[6];
+ $('chips').innerHTML=axes.map((a,i)=>`<span class="chip">${a.labels[scores[i]>=0?0:1]}</span>`).join('');
+ window.currentResult={code,name:d[0],tagline:d[1]};show('result');
+}
+$('share').onclick=()=>{const r=window.currentResult;const txt=`私のAPEX版性格タイプは【${r.code}｜${r.name}】でした！\n「${r.tagline}」\nあなたは何タイプ？\n#APEX #ApexLegends #APEX性格診断`;const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(txt);window.open(url,'_blank','noopener,noreferrer')};
+$('retry').onclick=()=>{index=0;scores=[0,0,0,0];answers=[];renderQ();show('quiz')};
+$('save').onclick=()=>{
+ const r=window.currentResult,canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350;const c=canvas.getContext('2d');
+ const g=c.createLinearGradient(0,0,1080,1350);g.addColorStop(0,'#111a32');g.addColorStop(.55,'#090d19');g.addColorStop(1,'#20204a');c.fillStyle=g;c.fillRect(0,0,1080,1350);
+ c.strokeStyle='#63e6ff';c.lineWidth=3;c.strokeRect(42,42,996,1266);
+ c.fillStyle='#63e6ff';c.font='bold 34px sans-serif';c.fillText('APEX PERSONALITY 16',86,135);
+ c.fillStyle='#9ba8c3';c.font='24px sans-serif';c.fillText('YOUR COMBAT PERSONALITY',86,195);
+ c.fillStyle='#f4f6ff';c.font='bold 100px sans-serif';c.fillText(r.code,82,430);
+ c.fillStyle='#63e6ff';c.font='bold 48px sans-serif';c.fillText(r.name,86,530);
+ c.fillStyle='#d4dbee';c.font='30px sans-serif';wrapText(c,r.tagline,86,620,900,52);
+ c.strokeStyle='#35435e';c.beginPath();c.moveTo(86,760);c.lineTo(994,760);c.stroke();
+ c.fillStyle='#9ba8c3';c.font='24px sans-serif';c.fillText('FIND YOUR TYPE  /  SHARE YOUR RESULT',86,835);
+ c.fillStyle='#f4f6ff';c.font='26px sans-serif';c.fillText('あなたは何タイプ？',86,920);
+ c.fillStyle='#71809d';c.font='18px sans-serif';c.fillText('UNOFFICIAL FAN-MADE PERSONALITY TEST',86,1210);
+ c.fillText('APEX PERSONALITY 16',86,1250);
+ const a=document.createElement('a');a.download='apex-personality-'+r.code+'.png';a.href=canvas.toDataURL('image/png');a.click();
+};
+function wrapText(ctx,text,x,y,maxWidth,lineHeight){let line='';for(const ch of text){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){ctx.fillText(line,x,y);line=ch;y+=lineHeight}else line=test}if(line)ctx.fillText(line,x,y)}
+</script>
+</body></html>
