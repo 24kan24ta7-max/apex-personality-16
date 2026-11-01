@@ -266,7 +266,7 @@ let playerStats=null;
 let index=0,answers=[],lastCode="";
 
 const $=id=>document.getElementById(id);
-function show(id){$("home").style.display=id==="home"?"grid":"none";$("features").style.display=id==="home"?"block":"none";$("quiz").classList.toggle("active",id==="quiz");$("result").classList.toggle("active",id==="result");window.scrollTo({top:0,behavior:"smooth"});}
+function show(id){const isHome=id==="home";$("home").style.display=isHome?"grid":"none";$("features").style.display=isHome?"block":"none";["community","collection","ranking"].forEach(sectionId=>{$(sectionId).style.display=isHome?"block":"none";});$("quiz").classList.toggle("active",id==="quiz");$("result").classList.toggle("active",id==="result");window.scrollTo({top:0,behavior:"instant"});}
 function cleanText(v){return String(v??"").slice(0,100)}
 function displayStats(){const box=$("playerStats");if(!playerStats){box.hidden=true;return;}box.hidden=false;box.textContent=`ランク：${cleanText(playerStats.rank||"取得不可")} ／ RP：${cleanText(playerStats.rp??"取得不可")} ／ レベル：${cleanText(playerStats.level??"取得不可")}`;}
 
