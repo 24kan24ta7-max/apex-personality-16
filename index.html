@@ -95,13 +95,13 @@ button{font:inherit;cursor:pointer}.shell{width:min(1120px,calc(100% - 34px));ma
   <p class="compat" id="compat"></p>
   <p class="share-help">共有メニューから画像と診断リンクを送れます。アプリによっては画像の手動添付が必要です。</p>
 <div class="trophy-banner" id="trophyBanner"><b id="trophyTitle">SECRET TITLE</b><p id="trophyDesc"></p></div>
-<section class="community-panel" id="lfgPanel"><div class="eyebrow">FIND YOUR SQUAD</div><h3>フレンド募集カード</h3><p>募集用の画像を作成。時間帯・VC・プレイ方針を選んでね。</p>
+<section class="community-panel" id="lfgPanel"><div class="eyebrow">FIND YOUR SQUAD</div><h3>フレンド募集情報</h3><p>ここで選んだ内容を、最後の「画像付きでシェア」「画像を保存」に診断結果とまとめて載せるよ。募集用の画像を別に作る必要はありません。</p>
 <div class="community-grid">
 <div><label for="lfgTime">プレイ時間帯</label><select id="lfgTime"><option>いつでも</option><option>朝</option><option>昼</option><option>夕方</option><option>夜</option><option>深夜</option><option>週末中心</option></select></div>
 <div><label for="lfgVoice">ボイスチャット</label><select id="lfgVoice"><option>どちらでも</option><option>VCあり</option><option>VCなし</option><option>聞き専OK</option></select></div>
 <div><label for="lfgStyle">プレイ方針</label><select id="lfgStyle"><option>エンジョイ</option><option>ランクガチ</option><option>カジュアル中心</option><option>初心者歓迎</option></select></div>
 <div><label for="lfgNote">ひとこと（任意）</label><input id="lfgNote" maxlength="32" placeholder="例：一緒にランク回そう！"></div>
-</div><div class="card-action-row"><button class="primary" id="lfgSave">フレンド募集画像を保存</button><button class="ghost" id="lfgShare">画像付きで募集</button></div></section>
+</div><p class="community-tip">※ 最後のシェア画像に、プレイ時間帯・VC・プレイ方針・ひとことを自動で追加します。</p></section>
 <section class="community-panel" id="verticalPanel"><div class="eyebrow">SOCIAL SHARE / 9:16</div><h3>ストーリー用の縦型カード</h3><p>InstagramやTikTokストーリー向けに、1080×1920の縦型画像を作れるよ。</p><div class="card-action-row"><button class="primary" id="verticalSave">縦型画像を保存</button><button class="ghost" id="verticalShare">縦型画像をシェア</button></div></section>
 <div class="result-actions"><button class="primary" id="saveBtn">▣ キャラ付き画像を保存</button><button class="primary" id="shareBtn">↗ 画像付きでシェア</button><button class="ghost" id="retryBtn">もう一度診断する</button></div>
  </div>
@@ -279,11 +279,11 @@ $("startBtn").onclick=start;$("backBtn").onclick=()=>{if(index>0){index--;render
 function legendImg(url){return new Promise(resolve=>{const img=new Image();img.crossOrigin="anonymous";img.onload=()=>resolve(img);img.onerror=()=>resolve(null);img.src=url;});}
 async function shareCardBlob(){
  const p=typeInfo[lastCode],legend=legendMap[lastCode],c=document.createElement("canvas");
- c.width=1200;c.height=675;const x=c.getContext("2d");
+ c.width=1200;c.height=875;const x=c.getContext("2d");
  const accent=lastCode[0]==="R"?(lastCode[1]==="S"?"#ff6659":"#b88aff"):(lastCode[1]==="S"?"#69bdff":"#f7c756");
- const bg=x.createLinearGradient(0,0,1200,675);bg.addColorStop(0,"#1d2531");bg.addColorStop(.55,"#0c131d");bg.addColorStop(1,"#15131a");x.fillStyle=bg;x.fillRect(0,0,1200,675);
- x.fillStyle=accent;x.fillRect(32,30,5,615);x.fillRect(32,30,1136,3);
- x.strokeStyle="#ffffff28";x.lineWidth=2;x.strokeRect(32,30,1136,615);
+ const bg=x.createLinearGradient(0,0,1200,875);bg.addColorStop(0,"#1d2531");bg.addColorStop(.55,"#0c131d");bg.addColorStop(1,"#15131a");x.fillStyle=bg;x.fillRect(0,0,1200,875);
+ x.fillStyle=accent;x.fillRect(32,30,5,815);x.fillRect(32,30,1136,3);
+ x.strokeStyle="#ffffff28";x.lineWidth=2;x.strokeRect(32,30,1136,815);
  x.fillStyle=accent;x.font='800 25px "Barlow Condensed",sans-serif';x.fillText("APEX  /  PERSONALITY PROFILE",65,81);
  x.fillStyle="#96a4b7";x.font='600 15px "Barlow Condensed",sans-serif';x.fillText("16-TYPE ORIGINAL PLAYER ID",66,109);
  // Keep a dedicated type region: profile details always start below it.
@@ -326,6 +326,16 @@ async function shareCardBlob(){
  }catch(e){x.fillStyle="#0d1723";x.fillRect(745,116,379,465);drawFallback(x,legend);}}
  else{drawFallback(x,legend);}
  x.fillStyle=accent;x.fillRect(734,603,400,3);
+ // Single unified share image: append recruitment details under the personality card.
+ x.fillStyle="#121d2a";x.fillRect(55,657,1090,175);
+ x.strokeStyle=accent;x.lineWidth=1.5;x.strokeRect(55,657,1090,175);
+ x.fillStyle=accent;x.font='900 25px "Barlow Condensed",sans-serif';x.fillText("FIND YOUR SQUAD  /  フレンド募集",76,693);
+ function shareValue(key){const el=$(key);return el?String(el.value||"—").slice(0,40):"—";}
+ function fitted(text,maxWidth,fontSize){let size=fontSize;do{x.font='700 '+size+'px "Noto Sans JP",sans-serif';if(x.measureText(text).width<=maxWidth)break;size-=1;}while(size>14);return size;}
+ const recruitment=[["PLAY TIME",shareValue("lfgTime")],["VOICE CHAT",shareValue("lfgVoice")],["PLAY STYLE",shareValue("lfgStyle")]];
+ recruitment.forEach(([label,value],i)=>{const left=78+i*356;x.fillStyle="#91a4b9";x.font='700 14px "Barlow Condensed",sans-serif';x.fillText(label,left,724);x.fillStyle="#f4f7fc";fitted(value,320,24);x.fillText(value,left,758);});
+ const note=shareValue("lfgNote");if(note!=="—"){x.fillStyle="#b9c9da";x.font='700 15px "Barlow Condensed",sans-serif';x.fillText("MESSAGE",78,803);x.fillStyle="#f4f7fc";fitted(note,880,20);x.fillText(note,181,803);}
+
  return new Promise((resolve,reject)=>c.toBlob(blob=>blob?resolve(blob):reject(Error("PNG生成失敗")),"image/png"));
 }
 function drawFallback(x,legend){x.fillStyle="#f0443529";x.fillRect(760,165,330,300);x.fillStyle="#ff9b45";x.font="bold 42px sans-serif";x.fillText(lastCode,815,335);}
@@ -390,7 +400,7 @@ async function imageAction(mode,share){
 }
 function saveBlobNamed(blob,name){const link=document.createElement("a"),url=URL.createObjectURL(blob);link.href=url;link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),12000);}
 function setupExtraActions(){
- $("lfgSave").onclick=()=>imageAction("lfg",false);$("lfgShare").onclick=()=>imageAction("lfg",true);
+
  $("verticalSave").onclick=()=>imageAction("vertical",false);$("verticalShare").onclick=()=>imageAction("vertical",true);
 }
 renderGallery();setupCompatibility();setupExtraActions();
