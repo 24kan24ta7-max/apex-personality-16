@@ -25,7 +25,25 @@ button{font:inherit;cursor:pointer}.shell{width:min(1120px,calc(100% - 34px));ma
 
 /* Recommended three-person squad */
 .dream-squad{margin:18px 0 4px;padding:20px;border:1px solid #f2aa4780;border-radius:12px;background:linear-gradient(145deg,#241c13,#111922 72%)}.dream-squad h3{font:900 27px "Barlow Condensed",sans-serif;letter-spacing:1px;color:#ffc65c;margin:0 0 7px}.dream-squad .squad-intro{font-size:12px;color:#b7c2ce;line-height:1.7;margin:0 0 14px}.squad-trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.squad-member{min-width:0;padding:12px 10px;background:#0c121c;border:1px solid #ffffff29;border-radius:8px}.squad-member.is-you{border-color:#f7bd4e}.squad-member .slot{display:block;color:#f6c65d;font:800 12px "Barlow Condensed",sans-serif;letter-spacing:1px}.squad-member .code{display:block;font:900 29px "Barlow Condensed",sans-serif;color:white;margin:5px 0}.squad-member .name{display:block;font-size:12px;font-weight:800;overflow-wrap:anywhere}.squad-member .job{display:block;font-size:11px;color:#aebbc9;margin-top:7px;line-height:1.5}.squad-strategy{border-top:1px solid #ffffff26;margin-top:15px;padding-top:13px;font-size:12px;color:#d3dbe3;line-height:1.8}.squad-strategy strong{color:#ffcc67}.squad-disclaimer{font-size:10px;color:#929fac;margin:10px 0 0}@media(max-width:540px){.dream-squad{padding:13px}.squad-trio{gap:5px}.squad-member{padding:10px 6px}.squad-member .code{font-size:24px}.squad-member .name{font-size:10px}.squad-member .job{font-size:10px}}
-.profile-fields label{display:flex;flex-direction:column;gap:7px;flex:1 1 180px;color:#ff9b45;font-size:11px;font-weight:700;letter-spacing:.7px}.profile-fields label input,.profile-fields label select{width:100%;min-height:46px;border:1px solid #ffffff35;background:#090d13;color:#fff;padding:12px;font:inherit;font-size:13px;border-radius:2px}.profile-setup{border-color:#ff9b4566;box-shadow:inset 3px 0 #ff9b45}.profile-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}@media(max-width:520px){.profile-fields{grid-template-columns:1fr}}</style>
+.profile-fields label{display:flex;flex-direction:column;gap:7px;flex:1 1 180px;color:#ff9b45;font-size:11px;font-weight:700;letter-spacing:.7px}.profile-fields label input,.profile-fields label select{width:100%;min-height:46px;border:1px solid #ffffff35;background:#090d13;color:#fff;padding:12px;font:inherit;font-size:13px;border-radius:2px}.profile-setup{border-color:#ff9b4566;box-shadow:inset 3px 0 #ff9b45}.profile-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}@media(max-width:520px){.profile-fields{grid-template-columns:1fr}}
+/* Community features */
+.community-panel{border:1px solid #ffffff28;background:linear-gradient(135deg,#151c26,#0b111a);padding:23px;margin:22px 0;border-radius:10px}
+.community-panel h2,.community-panel h3{font:900 clamp(23px,4vw,35px) "Barlow Condensed",sans-serif;letter-spacing:1px;margin:0 0 9px}
+.community-panel p{font-size:12px;line-height:1.8;color:#afbac6}.community-panel label{display:block;color:#e0e6ef;font-size:12px;font-weight:700;margin:10px 0 7px}
+.community-panel select,.community-panel input{width:100%;background:#0a0f17;border:1px solid #ffffff3b;border-radius:4px;color:#fff;padding:12px;font:inherit;font-size:13px;min-height:44px}
+.community-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.community-output{margin-top:15px;line-height:1.8;font-size:13px;white-space:pre-line;color:#eef2f8}
+.type-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px}
+.type-gallery article{background:#0a111a;border:1px solid #ffffff2c;border-radius:8px;overflow:hidden;min-width:0}
+.type-gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#192433}
+.type-gallery .type-caption{padding:9px}.type-gallery b{font:900 21px "Barlow Condensed",sans-serif;color:#ffcd70}
+.type-gallery small{display:block;color:#afbed0;font-size:10px;line-height:1.5}
+.community-tip{font-size:10px!important;color:#8795a5!important}
+.trophy-banner{margin:16px 0;padding:15px 18px;border:1px solid #ffd26c75;background:linear-gradient(110deg,#382714,#151d29);border-radius:8px}
+.trophy-banner b{color:#ffd26c;font-size:18px}.trophy-banner p{color:#c9d4df;font-size:12px;margin:5px 0}
+.card-action-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:16px 0}.card-action-row button{font-size:12px}
+@media(max-width:700px){.type-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.community-grid{grid-template-columns:1fr}.community-panel{padding:15px}}
+</style>
 </head>
 <body>
 <div class="shell">
@@ -46,6 +64,15 @@ button{font:inherit;cursor:pointer}.shell{width:min(1120px,calc(100% - 34px));ma
 <div class="feature" data-n="02"><b>16タイプの診断結果</b><p>あなたのタイプ名・特徴・強み・注意点をプロフィール形式で表示。</p></div>
 <div class="feature" data-n="03"><b>結果をシェア</b><p>診断カードを画像で保存。自分のタイプを仲間に見せてみよう。</p></div>
 </div></section>
+
+<section class="community-panel" id="community">
+ <div class="eyebrow">COMMUNITY FEATURES</div><h2>FRIEND MATCH / フレンド相性診断</h2>
+ <p>自分とフレンドの16タイプを選ぶと、相性と役割分担を確認できるよ。※スコアはこのサイト独自のゲーム内相性目安です。</p>
+ <div class="community-grid"><div><label for="compatA">自分のタイプ</label><select id="compatA"></select></div><div><label for="compatB">フレンドのタイプ</label><select id="compatB"></select></div></div>
+ <button class="primary" id="compatCheck" style="margin-top:13px">相性を調べる</button><div id="compatResult" class="community-output" role="status"></div>
+</section>
+<section class="community-panel" id="collection"><div class="eyebrow">CHARACTER ARCHIVE</div><h2>16タイプ図鑑</h2><p>すべてのオリジナルキャラクターと役割をチェック！</p><div id="typeGallery" class="type-gallery"></div></section>
+<section class="community-panel" id="ranking"><div class="eyebrow">PLAYER STATISTICS</div><h2>タイプランキング / 集計状況</h2><p id="rankIntro">現在、サイト全体の診断人数を保存・集計するサーバーは未接続です。</p><div id="rankList" class="community-output">全体ランキングは集計開始後に公開予定。架空の順位や人数は表示しません。</div><p class="community-tip">今後、同意を得て匿名の結果を収集できる仕組みを導入すれば、実際の人気タイプを表示できます。</p></section>
 <section class="screen" id="quiz">
  <div class="quiz-top"><span>COMBAT PROFILE ANALYSIS</span><span id="count">01 / 24</span></div>
  <div class="progress"><span id="bar"></span></div>
@@ -66,7 +93,17 @@ button{font:inherit;cursor:pointer}.shell{width:min(1120px,calc(100% - 34px));ma
    <div class="result-footer"><span>NOT AN OFFICIAL EA / RESPAWN PRODUCT</span><span>YOUR STYLE. YOUR CHARACTER.</span></div>
   </div>
   <p class="compat" id="compat"></p>
-  <p class="share-help">共有メニューから画像と診断リンクを送れます。アプリによっては画像の手動添付が必要です。</p><div class="result-actions"><button class="primary" id="saveBtn">▣ キャラ付き画像を保存</button><button class="primary" id="shareBtn">↗ 画像付きでシェア</button><button class="ghost" id="retryBtn">もう一度診断する</button></div>
+  <p class="share-help">共有メニューから画像と診断リンクを送れます。アプリによっては画像の手動添付が必要です。</p>
+<div class="trophy-banner" id="trophyBanner"><b id="trophyTitle">SECRET TITLE</b><p id="trophyDesc"></p></div>
+<section class="community-panel" id="lfgPanel"><div class="eyebrow">FIND YOUR SQUAD</div><h3>フレンド募集カード</h3><p>募集用の画像を作成。時間帯・VC・プレイ方針を選んでね。</p>
+<div class="community-grid">
+<div><label for="lfgTime">プレイ時間帯</label><select id="lfgTime"><option>いつでも</option><option>朝</option><option>昼</option><option>夕方</option><option>夜</option><option>深夜</option><option>週末中心</option></select></div>
+<div><label for="lfgVoice">ボイスチャット</label><select id="lfgVoice"><option>どちらでも</option><option>VCあり</option><option>VCなし</option><option>聞き専OK</option></select></div>
+<div><label for="lfgStyle">プレイ方針</label><select id="lfgStyle"><option>エンジョイ</option><option>ランクガチ</option><option>カジュアル中心</option><option>初心者歓迎</option></select></div>
+<div><label for="lfgNote">ひとこと（任意）</label><input id="lfgNote" maxlength="32" placeholder="例：一緒にランク回そう！"></div>
+</div><div class="card-action-row"><button class="primary" id="lfgSave">フレンド募集画像を保存</button><button class="ghost" id="lfgShare">画像付きで募集</button></div></section>
+<section class="community-panel" id="verticalPanel"><div class="eyebrow">SOCIAL SHARE / 9:16</div><h3>ストーリー用の縦型カード</h3><p>InstagramやTikTokストーリー向けに、1080×1920の縦型画像を作れるよ。</p><div class="card-action-row"><button class="primary" id="verticalSave">縦型画像を保存</button><button class="ghost" id="verticalShare">縦型画像をシェア</button></div></section>
+<div class="result-actions"><button class="primary" id="saveBtn">▣ キャラ付き画像を保存</button><button class="primary" id="shareBtn">↗ 画像付きでシェア</button><button class="ghost" id="retryBtn">もう一度診断する</button></div>
  </div>
 </section>
 </main>
@@ -236,7 +273,7 @@ function displayStats(){const box=$("playerStats");if(!playerStats){box.hidden=t
 function start(){index=0;answers=[];show("quiz");renderQuestion();}
 function renderQuestion(){const q=questions[index];$("count").textContent=String(index+1).padStart(2,"0")+" / 24";$("bar").style.width=((index+1)/24*100)+"%";$("qKicker").textContent="TACTICAL DECISION "+String(index+1).padStart(2,"0");$("question").textContent=q[0];$("answers").innerHTML="";[1,2].forEach((n)=>{const b=document.createElement("button");b.className="answer";b.innerHTML=`<span class="letter">OPTION 0${n}</span><strong>${q[n]}</strong><small>${n===1?"自分の感覚に近い":"こちらの考え方に近い"}</small>`;b.onclick=()=>choose(n);$("answers").appendChild(b);});$("backBtn").disabled=index===0;$("backBtn").style.opacity=index===0?".35":"1";}
 function choose(n){answers[index]=n;if(index<questions.length-1){index++;renderQuestion();}else{try{finish();}catch(e){console.error("Result error",e);show("result");}}}
-function finish(){const axes={R:0,S:0,I:0,F:0};questions.forEach((q,i)=>{axes[q[5]]+=(answers[i]===1?1:-1);});const code=(axes.R>=0?"R":"G")+(axes.S>=0?"S":"C")+(axes.I>=0?"I":"A")+(axes.F>=0?"F":"T");lastCode=code;const p=typeInfo[code];$("legendLabel").textContent="YOUR CHARACTER / "+legendMap[code].name;const name=$("playerId").value.trim();const profile=[["機種",$("platform").value],["RANK",$("playerRank").value],["MAIN LEGEND",$("mainLegend").value],["WEAPON",$("favoriteWeapon").value.trim()]].filter(v=>v[1]);$("playerResult").textContent=name?"PLAYER / "+cleanText(name):"PLAYER / PLAYER";if(profile.length){const small=document.createElement("small");small.textContent=profile.map(v=>v[0]+": "+cleanText(v[1])).join("　／　");$("playerResult").appendChild(small);}$("emblem").textContent=code;$("resultCode").textContent=code.split("").join(" / ");$("resultTitle").textContent=p[0];$("resultTagline").textContent=p[1];$("resultDesc").textContent="あなたは「"+p[7]+"」タイプ。"+p[5];$("strength").textContent=p[2];$("strengthDesc").textContent=p[5];$("caution").textContent=p[3];$("cautionDesc").textContent=p[6];$("role").textContent=p[4];$("roleDesc").textContent="部隊では「"+p[4]+"」として力を発揮。"+p[7]+"があなたのキーワード。";renderSquadMatches(code);renderUltimateTrio(code);$("compat").innerHTML="あなたのキーワード： <strong>"+p[7]+"</strong>　｜　この結果を仲間とシェアして、タイプを比べてみよう。";show("result");try{setPortrait(code);}catch(e){console.error("Portrait error",e);$("legendImage").style.display="none";const panel=document.getElementById("portraitPanel");if(panel)panel.style.display="none";$("emblem").style.display="block";}}
+function finish(){const axes={R:0,S:0,I:0,F:0};questions.forEach((q,i)=>{axes[q[5]]+=(answers[i]===1?1:-1);});const code=(axes.R>=0?"R":"G")+(axes.S>=0?"S":"C")+(axes.I>=0?"I":"A")+(axes.F>=0?"F":"T");lastCode=code;const p=typeInfo[code];$("legendLabel").textContent="YOUR CHARACTER / "+legendMap[code].name;const name=$("playerId").value.trim();const profile=[["機種",$("platform").value],["RANK",$("playerRank").value],["MAIN LEGEND",$("mainLegend").value],["WEAPON",$("favoriteWeapon").value.trim()]].filter(v=>v[1]);$("playerResult").textContent=name?"PLAYER / "+cleanText(name):"PLAYER / PLAYER";if(profile.length){const small=document.createElement("small");small.textContent=profile.map(v=>v[0]+": "+cleanText(v[1])).join("　／　");$("playerResult").appendChild(small);}$("emblem").textContent=code;$("resultCode").textContent=code.split("").join(" / ");$("resultTitle").textContent=p[0];$("resultTagline").textContent=p[1];$("resultDesc").textContent="あなたは「"+p[7]+"」タイプ。"+p[5];$("strength").textContent=p[2];$("strengthDesc").textContent=p[5];$("caution").textContent=p[3];$("cautionDesc").textContent=p[6];$("role").textContent=p[4];$("roleDesc").textContent="部隊では「"+p[4]+"」として力を発揮。"+p[7]+"があなたのキーワード。";renderSquadMatches(code);renderUltimateTrio(code);renderTrophy(code);$("compat").innerHTML="あなたのキーワード： <strong>"+p[7]+"</strong>　｜　この結果を仲間とシェアして、タイプを比べてみよう。";show("result");try{setPortrait(code);}catch(e){console.error("Portrait error",e);$("legendImage").style.display="none";const panel=document.getElementById("portraitPanel");if(panel)panel.style.display="none";$("emblem").style.display="block";}}
 $("startBtn").onclick=start;$("backBtn").onclick=()=>{if(index>0){index--;renderQuestion();}};$("retryBtn").onclick=start;
 
 function legendImg(url){return new Promise(resolve=>{const img=new Image();img.crossOrigin="anonymous";img.onload=()=>resolve(img);img.onerror=()=>resolve(null);img.src=url;});}
@@ -296,5 +333,66 @@ function saveBlob(blob){const a=document.createElement("a");const url=URL.create
 function shareCaption(){const p=typeInfo[lastCode],legend=legendMap[lastCode];return "APEX風16タイプ診断【"+p[0]+"】("+lastCode+")！相性レジェンド："+legend.name+"｜あなたは何タイプ？ "+location.origin+location.pathname+" #APEX16診断 #APEX #16タイプ診断";}
 $("shareBtn").onclick=async()=>{const b=$("shareBtn");b.disabled=true;b.textContent="画像を作成中…";try{const blob=await shareCardBlob(),file=new File([blob],"apex-"+lastCode+".png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text:shareCaption(),title:"APEX 16タイプ診断"});}else{saveBlob(blob);alert("画像を保存しました。SNS投稿時に画像を添付してください。");}}catch(e){if(e.name!=="AbortError")alert("共有できませんでした。画像保存を試してください。");}finally{b.disabled=false;b.textContent="↗ 画像付きでシェア";}};
 $("saveBtn").onclick=async()=>{const b=$("saveBtn");b.disabled=true;try{saveBlob(await shareCardBlob());}catch(e){alert("画像保存に失敗しました。");}finally{b.disabled=false;}};
+
+const typeCodes=Object.keys(typeInfo).filter(code=>legendMap[code]).sort();
+const colorForType=code=>code[0]==="R"?(code[1]==="S"?"#ff6659":"#b88aff"):(code[1]==="S"?"#69bdff":"#f7c756");
+const trophies={
+ RSIF:["混沌の突破者","予想外の場面をチャンスに変える。"],RSIT:["先導する司令官","勝利への道を切り拓く。"],RSAF:["ファイトの火付け役","一瞬の隙を逃さない。"],RSAT:["静かなハンター","裏から戦況を動かす。"],
+ RCIF:["不屈の先陣","逆風でも前線を支える。"],RCIT:["戦場の索敵眼","情報で部隊を導く。"],RCAF:["虚実の魔術師","相手の予想を裏切る。"],RCAT:["戦場の設計者","戦う場所を支配する。"],
+ GSIF:["戦線の調律師","チームの空気を整える。"],GSIT:["未来を読む頭脳","一手先の展開を描く。"],GSAF:["士気のエンジン","仲間の力を引き出す。"],GSAT:["精密な実行者","確実な仕事を積み重ねる。"],
+ GCIF:["最後の命綱","味方の帰る場所を守る。"],GCIT:["鉄壁の砦","耐えて勝機を作る。"],GCAF:["希望の先見者","難局でも突破口を探す。"],GCAT:["盤面の守護者","部隊の安定を支える。"]
+};
+function renderTrophy(code){const t=trophies[code]||["オリジナルプレイヤー","自分だけのスタイルを貫く。"];$("trophyTitle").textContent="✦ SECRET TITLE / "+t[0];$("trophyDesc").textContent=t[1];}
+function renderGallery(){
+ const gallery=$("typeGallery");gallery.replaceChildren();
+ typeCodes.forEach(code=>{const p=typeInfo[code],item=document.createElement("article"),img=document.createElement("img"),body=document.createElement("div"),label=document.createElement("b"),name=document.createElement("small"),role=document.createElement("small");
+ img.src=completedCards[code]||characterUrl(code);img.alt=legendMap[code].name+" のオリジナルキャラクター";img.loading="lazy";
+ body.className="type-caption";label.textContent=code;label.style.color=colorForType(code);name.textContent=legendMap[code].name;role.textContent=p[4];body.append(label,name,role);item.append(img,body);gallery.appendChild(item);});
+}
+function setupCompatibility(){
+ for(const id of ["compatA","compatB"]){const sel=$(id);typeCodes.forEach(code=>{const o=document.createElement("option");o.value=code;o.textContent=code+" / "+legendMap[code].name;sel.appendChild(o);});}
+ $("compatB").selectedIndex=4;
+ $("compatCheck").onclick=()=>{
+ const a=$("compatA").value,b=$("compatB").value;const aa=squadMatches[a]||[],bb=squadMatches[b]||[];
+ const mutual=aa.some(x=>x[0]===b)&&bb.some(x=>x[0]===a);
+ const oneWay=aa.some(x=>x[0]===b)||bb.some(x=>x[0]===a);
+ const same=a===b;const score=same?78:mutual?96:oneWay?88:72;
+ const note=same?"似たプレイ傾向で連携しやすい反面、弱点が重なることも。":mutual?"お互いが補完候補に入る、非常に噛み合う組み合わせ。":oneWay?"一方の得意分野がもう一方の弱点を支える編成。":"得意な役割が違うので、声かけを意識すると連携しやすい。";
+ $("compatResult").textContent="相性スコア "+score+" / 100（独自目安）\n"+a+" "+legendMap[a].name+" × "+b+" "+legendMap[b].name+"\n"+note+"\n役割：あなた＝"+typeInfo[a][4]+" ／ フレンド＝"+typeInfo[b][4];
+ };
+}
+function drawTextFit(x,text,maxWidth,size,y,color,left){let n=size;x.fillStyle=color;while(n>19){x.font="800 "+n+'px "Noto Sans JP",sans-serif';if(x.measureText(text).width<=maxWidth)break;n-=2;}x.fillText(text,left,y);}
+async function makeExtraCard(mode){
+ const c=document.createElement("canvas");c.width=1080;c.height=1920;const x=c.getContext("2d");
+ const color=colorForType(lastCode),bg=x.createLinearGradient(0,0,1080,1920);bg.addColorStop(0,"#202b3a");bg.addColorStop(1,"#080d14");x.fillStyle=bg;x.fillRect(0,0,1080,1920);
+ x.fillStyle=color;x.fillRect(34,38,1012,7);x.fillStyle="#eaf1fa";x.font='900 53px "Barlow Condensed",sans-serif';x.fillText(mode==="lfg"?"FIND YOUR SQUAD":"APEX 16 TYPE PROFILE",68,133);
+ x.font='900 145px "Barlow Condensed",sans-serif';x.fillStyle=color;x.fillText(lastCode,67,314);
+ drawTextFit(x,typeInfo[lastCode][0],940,65,391,"#f0f4fa",68);
+ const img=await legendImg(completedCards[lastCode]||characterUrl(lastCode));
+ x.fillStyle="#101923";x.fillRect(70,443,940,900);
+ if(img){const sc=Math.min(910/img.naturalWidth,880/img.naturalHeight);const w=img.naturalWidth*sc,h=img.naturalHeight*sc;try{x.drawImage(img,85+(910-w)/2,453+(880-h)/2,w,h);}catch(e){}}
+ x.strokeStyle=color;x.lineWidth=4;x.strokeRect(70,443,940,900);
+ x.fillStyle="#98a9bf";x.font='700 38px "Barlow Condensed",sans-serif';x.fillText("PLAYER PROFILE",70,1430);
+ const player=$("playerId").value.trim()||"PLAYER";
+ drawTextFit(x,player,820,60,1503,"#f6f7fc",70);
+ const details=["PLATFORM  "+($("platform").value||"—"),"RANK  "+($("playerRank").value||"—"),"LEGEND  "+($("mainLegend").value||"—"),"WEAPON  "+($("favoriteWeapon").value||"—")];
+ if(mode==="lfg")details.push("TIME  "+$("lfgTime").value,"VOICE  "+$("lfgVoice").value,"STYLE  "+$("lfgStyle").value);
+ const fsize=mode==="lfg"?32:40,line=mode==="lfg"?51:68;details.forEach((t,i)=>{x.fillStyle=i===1?color:"#dbe5ef";x.font='700 '+fsize+'px "Noto Sans JP",sans-serif';x.fillText(t,74,1561+i*line,890);});
+ if(mode==="lfg"){const note=$("lfgNote").value.trim();if(note)drawTextFit(x,note,900,32,1900,"#ffdb94",70);}
+ else{x.fillStyle="#91a0b3";x.font='700 30px "Barlow Condensed",sans-serif';x.fillText("#APEX16診断",74,1876);}
+ return new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(Error("画像生成失敗")),"image/png"));
+}
+async function imageAction(mode,share){
+ const btn=$(mode==="lfg"?(share?"lfgShare":"lfgSave"):(share?"verticalShare":"verticalSave"));btn.disabled=true;
+ try{const blob=await makeExtraCard(mode),name="apex-"+mode+"-"+lastCode+".png";if(share&&navigator.canShare&&navigator.canShare({files:[new File([blob],name,{type:"image/png"})]})){await navigator.share({files:[new File([blob],name,{type:"image/png"})],text:mode==="lfg"?"APEXフレンド募集中！ #APEX16診断":shareCaption()});}else{saveBlobNamed(blob,name);if(share)alert("画像を保存しました。SNSに添付して投稿してください。");}}
+ catch(e){if(e.name!=="AbortError")alert("画像の作成に失敗しました。");}
+ finally{btn.disabled=false;}
+}
+function saveBlobNamed(blob,name){const link=document.createElement("a"),url=URL.createObjectURL(blob);link.href=url;link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),12000);}
+function setupExtraActions(){
+ $("lfgSave").onclick=()=>imageAction("lfg",false);$("lfgShare").onclick=()=>imageAction("lfg",true);
+ $("verticalSave").onclick=()=>imageAction("vertical",false);$("verticalShare").onclick=()=>imageAction("vertical",true);
+}
+renderGallery();setupCompatibility();setupExtraActions();
 </script>
 </body></html>
