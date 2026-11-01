@@ -241,25 +241,55 @@ $("startBtn").onclick=start;$("backBtn").onclick=()=>{if(index>0){index--;render
 
 function legendImg(url){return new Promise(resolve=>{const img=new Image();img.crossOrigin="anonymous";img.onload=()=>resolve(img);img.onerror=()=>resolve(null);img.src=url;});}
 async function shareCardBlob(){
- const p=typeInfo[lastCode],legend=legendMap[lastCode],c=document.createElement("canvas");c.width=1200;c.height=675;
- const x=c.getContext("2d"),g=x.createLinearGradient(0,0,1200,675);g.addColorStop(0,"#202630");g.addColorStop(.6,"#0b1017");g.addColorStop(1,"#321916");x.fillStyle=g;x.fillRect(0,0,1200,675);
- x.strokeStyle="#f04435";x.lineWidth=3;x.strokeRect(28,28,1144,619);
- x.fillStyle="#f04435";x.font="bold 28px sans-serif";x.fillText("APEX STYLE ANALYZER",65,82);
- x.fillStyle="#9da8b4";x.font="18px sans-serif";x.fillText("16-TYPE COMBAT PROFILE",65,114);
- const player=$("playerId").value.trim(),profile=[["PLATFORM",$("platform").value],["RANK",$("playerRank").value],["MAIN",$("mainLegend").value],["WEAPON",$("favoriteWeapon").value.trim()]].filter(v=>v[1]);if(player){x.fillStyle="#ff9b45";x.font="bold 21px sans-serif";x.fillText("PLAYER: "+player.slice(0,28),65,153);}x.fillStyle="#c5cdd5";x.font="bold 17px sans-serif";profile.forEach((v,i)=>x.fillText(v[0]+": "+v[1],65,190+i*27));
- x.fillStyle="#ff9b45";x.font="bold 76px sans-serif";x.fillText(lastCode,65,275);
- x.fillStyle="#f5f4ef";x.font="bold 43px sans-serif";x.fillText(p[0],65,355);
- x.fillStyle="#ff9b45";x.font="bold 27px sans-serif";x.fillText("CHARACTER / "+legend.name,65,418);
- x.fillStyle="#c5cdd5";x.font="22px sans-serif";x.fillText("STRENGTH  "+p[2],65,492);x.fillText("ROLE  "+p[4],65,532);
- x.fillStyle="#8f9ba8";x.font="17px sans-serif";x.fillText("YOUR STYLE. YOUR CHARACTER. / ORIGINAL CHARACTER PROJECT",65,610);
+ const p=typeInfo[lastCode],legend=legendMap[lastCode],c=document.createElement("canvas");
+ c.width=1200;c.height=675;const x=c.getContext("2d");
+ const accent=lastCode[0]==="R"?(lastCode[1]==="S"?"#ff6659":"#b88aff"):(lastCode[1]==="S"?"#69bdff":"#f7c756");
+ const bg=x.createLinearGradient(0,0,1200,675);bg.addColorStop(0,"#1d2531");bg.addColorStop(.55,"#0c131d");bg.addColorStop(1,"#15131a");x.fillStyle=bg;x.fillRect(0,0,1200,675);
+ x.fillStyle=accent;x.fillRect(32,30,5,615);x.fillRect(32,30,1136,3);
+ x.strokeStyle="#ffffff28";x.lineWidth=2;x.strokeRect(32,30,1136,615);
+ x.fillStyle=accent;x.font='800 25px "Barlow Condensed",sans-serif';x.fillText("APEX  /  PERSONALITY PROFILE",65,81);
+ x.fillStyle="#96a4b7";x.font='600 15px "Barlow Condensed",sans-serif';x.fillText("16-TYPE ORIGINAL PLAYER ID",66,109);
+ // Keep a dedicated type region: profile details always start below it.
+ x.fillStyle=accent;x.font='900 100px "Barlow Condensed",sans-serif';x.fillText(lastCode,65,217);
+ function fit(text,maxWidth,size,weight="800",family='"Barlow Condensed",sans-serif'){
+   let n=size;do{x.font=weight+" "+n+"px "+family;if(x.measureText(text).width<=maxWidth)break;n-=2;}while(n>13);return n;
+ }
+ x.fillStyle="#f5f7fb";fit(p[0],620,49,"900");x.fillText(p[0],67,276);
+ x.fillStyle=accent;fit("CHARACTER / "+legend.name,620,25,"800");x.fillText("CHARACTER / "+legend.name,67,319);
+ x.strokeStyle="#ffffff32";x.beginPath();x.moveTo(65,340);x.lineTo(683,340);x.stroke();
+ const player=$("playerId").value.trim()||"—",platform=$("platform").value||"—";
+ const rank=$("playerRank").value||"—",main=$("mainLegend").value||"—",weapon=$("favoriteWeapon").value||"—";
+ function field(label,value,left,top,maxWidth=255){
+   x.fillStyle="#93a3b8";x.font='700 15px "Barlow Condensed",sans-serif';x.fillText(label,left,top);
+   x.fillStyle="#f2f5fa";fit(value,maxWidth,24,"700",'"Noto Sans JP",sans-serif');x.fillText(value,left,top+31);
+ }
+ field("PLAYER NAME",player,66,371,269);field("PLATFORM",platform,377,371,280);
+ field("MAIN LEGEND",main,66,470,275);field("FAVORITE WEAPON",weapon,377,470,280);
+ // Colored stylized shield, custom to rank tier, not an official in-game emblem.
+ const rankColors={"ルーキー":"#96a2a9","ブロンズ":"#b57a4f","シルバー":"#d8dee5","ゴールド":"#f5c44c","プラチナ":"#7ed4d0","ダイヤモンド":"#67aafa","マスター":"#bb7dff","プレデター":"#fa5d65"};
+ const rc=rankColors[rank]||"#96a2a9";const cx=89,cy=582;
+ x.save();x.translate(cx,cy);x.fillStyle="#0c1420";x.strokeStyle=rc;x.lineWidth=3;
+ x.beginPath();x.moveTo(0,-25);x.lineTo(21,-13);x.lineTo(18,15);x.lineTo(0,29);x.lineTo(-18,15);x.lineTo(-21,-13);x.closePath();x.fill();x.stroke();
+ x.strokeStyle=rc;x.lineWidth=2;x.beginPath();x.moveTo(0,-15);x.lineTo(12,1);x.lineTo(0,18);x.lineTo(-12,1);x.closePath();x.stroke();
+ x.beginPath();x.moveTo(-12,1);x.lineTo(12,1);x.moveTo(0,-15);x.lineTo(0,18);x.stroke();x.restore();
+ x.fillStyle="#92a4b9";x.font='700 14px "Barlow Condensed",sans-serif';x.fillText("CURRENT RANK",124,569);
+ x.fillStyle=rc;fit(rank,260,24,"800",'"Noto Sans JP",sans-serif');x.fillText(rank,124,600);
+ x.fillStyle="#90a1b5";x.font='600 14px "Barlow Condensed",sans-serif';x.fillText("YOUR STYLE  /  YOUR SQUAD",379,595);
+ // Clear picture area on the right, separated from the player info.
+ x.fillStyle="#09111b";x.fillRect(734,103,400,492);
+ x.strokeStyle=accent;x.lineWidth=2;x.strokeRect(734,103,400,492);
  const individual=completedCards[lastCode]?await legendImg(completedCards[lastCode]):null;
  const sprite=individual?null:await legendImg("apex_original_characters.webp");
  const img=individual||sprite||await legendImg(characterUrl(lastCode));
- if(img){try{if(individual){const scale=Math.min(385/img.naturalWidth,480/img.naturalHeight);const w=img.naturalWidth*scale,h=img.naturalHeight*scale;x.drawImage(img,735+(385-w)/2,100+(480-h)/2,w,h);}else if(sprite){const sw=img.naturalWidth/4,sh=img.naturalHeight/4;x.drawImage(img,(artIndex(lastCode)%4)*sw,Math.floor(artIndex(lastCode)/4)*sh,sw,sh,735,120,385,385);}else{x.drawImage(img,735,120,385,385);}x.getImageData(0,0,1,1);}catch(e){return await fallbackCard();}}
+ if(img){try{
+   if(individual){const sc=Math.min(379/img.naturalWidth,465/img.naturalHeight),w=img.naturalWidth*sc,h=img.naturalHeight*sc;x.drawImage(img,745+(379-w)/2,116+(465-h)/2,w,h);}
+   else if(sprite){const sw=img.naturalWidth/4,sh=img.naturalHeight/4;x.drawImage(img,(artIndex(lastCode)%4)*sw,Math.floor(artIndex(lastCode)/4)*sh,sw,sh,745,135,379,379);}
+   else{x.drawImage(img,745,135,379,379);}
+   x.getImageData(0,0,1,1);
+ }catch(e){x.fillStyle="#0d1723";x.fillRect(745,116,379,465);drawFallback(x,legend);}}
  else{drawFallback(x,legend);}
- x.fillStyle="#ff9b45";x.font="bold 22px sans-serif";x.fillText(legend.name,770,555);
- return new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(Error("PNG生成失敗")),"image/png"));
- async function fallbackCard(){x.clearRect(730,115,400,405);x.fillStyle="#111821";x.fillRect(735,120,385,385);drawFallback(x,legend);x.fillStyle="#ff9b45";x.font="bold 22px sans-serif";x.fillText(legend.name,770,555);return new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(Error("PNG生成失敗")),"image/png"));}
+ x.fillStyle=accent;x.fillRect(734,603,400,3);
+ return new Promise((resolve,reject)=>c.toBlob(blob=>blob?resolve(blob):reject(Error("PNG生成失敗")),"image/png"));
 }
 function drawFallback(x,legend){x.fillStyle="#f0443529";x.fillRect(760,165,330,300);x.fillStyle="#ff9b45";x.font="bold 42px sans-serif";x.fillText(lastCode,815,335);}
 function saveBlob(blob){const a=document.createElement("a");const url=URL.createObjectURL(blob);a.download="apex-"+lastCode+".png";a.href=url;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),12000);}
