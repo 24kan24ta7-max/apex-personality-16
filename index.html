@@ -263,7 +263,7 @@ async function shareCardBlob(){
 }
 function drawFallback(x,legend){x.fillStyle="#f0443529";x.fillRect(760,165,330,300);x.fillStyle="#ff9b45";x.font="bold 42px sans-serif";x.fillText(lastCode,815,335);}
 function saveBlob(blob){const a=document.createElement("a");const url=URL.createObjectURL(blob);a.download="apex-"+lastCode+".png";a.href=url;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),12000);}
-function shareCaption(){const p=typeInfo[lastCode],legend=legendMap[lastCode];return "APEX風16タイプ診断で【"+p[0]+"】("+lastCode+")！\\n相性レジェンド："+legend.name+"\\nあなたは何タイプ？\\n"+location.origin+location.pathname+"\\n#APEX #16タイプ診断 #APEX16診断";}
+function shareCaption(){const p=typeInfo[lastCode];return ["APEX風16タイプ診断","【"+p[0]+"】 "+lastCode,"あなたは何タイプ？",location.origin+location.pathname,"#APEX16診断 #APEX #16タイプ診断"].join(String.fromCharCode(10));}
 $("shareBtn").onclick=async()=>{const b=$("shareBtn");b.disabled=true;b.textContent="画像を作成中…";try{const blob=await shareCardBlob(),file=new File([blob],"apex-"+lastCode+".png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text:shareCaption(),title:"APEX 16タイプ診断"});}else{saveBlob(blob);alert("画像を保存しました。SNS投稿時に画像を添付してください。");}}catch(e){if(e.name!=="AbortError")alert("共有できませんでした。画像保存を試してください。");}finally{b.disabled=false;b.textContent="↗ 画像付きでシェア";}};
 $("saveBtn").onclick=async()=>{const b=$("saveBtn");b.disabled=true;try{saveBlob(await shareCardBlob());}catch(e){alert("画像保存に失敗しました。");}finally{b.disabled=false;}};
 </script>
