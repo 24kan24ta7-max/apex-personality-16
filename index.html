@@ -132,6 +132,11 @@ const typeInfo={
 const STATS_PROXY_URL="";
 
 const legendMap={"RSIF":{"name":"スカーミッシャー","color":"#ed4538","hair":"#2a1a1a","style":0,"sex":0,"accent":"#ed4538"},"RSIT":{"name":"タクティカルリーダー","color":"#3273a9","hair":"#151b2a","style":1,"sex":1,"accent":"#3273a9"},"RSAF":{"name":"クラッシュメーカー","color":"#ff8933","hair":"#f0e0cf","style":2,"sex":2,"accent":"#ff8933"},"RSAT":{"name":"アサシン","color":"#9858cb","hair":"#241329","style":3,"sex":0,"accent":"#9858cb"},"RCIF":{"name":"フロントライナー","color":"#f0783e","hair":"#35231d","style":4,"sex":1,"accent":"#f0783e"},"RCIT":{"name":"リコンスペシャリスト","color":"#6173ae","hair":"#101922","style":0,"sex":2,"accent":"#6173ae"},"RCAF":{"name":"トリックスター","color":"#c85aa5","hair":"#6d2e7c","style":1,"sex":0,"accent":"#c85aa5"},"RCAT":{"name":"グラウンドコントローラー","color":"#d9a334","hair":"#6e533a","style":2,"sex":1,"accent":"#d9a334"},"GSIF":{"name":"ハーモナイザー","color":"#68b85b","hair":"#2b4029","style":3,"sex":2,"accent":"#68b85b"},"GSIT":{"name":"ストラテジスト","color":"#34a78f","hair":"#d4d9e0","style":4,"sex":0,"accent":"#34a78f"},"GSAF":{"name":"チームブースター","color":"#d9a235","hair":"#5b3a2e","style":0,"sex":1,"accent":"#d9a235"},"GSAT":{"name":"オペレーター","color":"#586fa4","hair":"#252b32","style":1,"sex":2,"accent":"#586fa4"},"GCIF":{"name":"ライフサポーター","color":"#ec81a8","hair":"#b4acb2","style":2,"sex":0,"accent":"#ec81a8"},"GCIT":{"name":"ディフェンダー","color":"#4e7cae","hair":"#1b2731","style":3,"sex":1,"accent":"#4e7cae"},"GCAF":{"name":"ビジョナリー","color":"#9ca9c6","hair":"#dce2e6","style":4,"sex":2,"accent":"#9ca9c6"},"GCAT":{"name":"ガーディアン","color":"#647b9a","hair":"#a2b0c2","style":0,"sex":0,"accent":"#647b9a"}};
+function artIndex(code){return Object.keys(legendMap).indexOf(code);}
+function setPortrait(code){
+ const im=$("legendImage");im.style.display="block";im.src=characterUrl(code);
+ const panel=document.getElementById("portraitPanel");if(panel)panel.style.display="none";
+}
 function characterSvg(code){
  const d=legendMap[code],i=artIndex(code),c=d.color,h=d.hair;
  const skins=["#f3bd94","#ca8e6e","#e5aa84","#f4c8a9"],skin=skins[i%4],eye=["#f8b648","#80dfff","#dca5ff","#9fe9ba"][i%4];
