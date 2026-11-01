@@ -135,6 +135,7 @@ const legendMap={"RSIF":{"name":"スカーミッシャー","color":"#ed4538","ha
 function artIndex(code){return Object.keys(legendMap).indexOf(code);}
 function setPortrait(code){
  const im=$("legendImage");im.style.display="block";im.src=characterUrl(code);
+ const hi=new Image();hi.onload=()=>{if(lastCode===code){im.src=hi.src;im.style.objectFit="cover";im.style.objectPosition=(artIndex(code)%4*100/3)+"% "+(Math.floor(artIndex(code)/4)*100/3)+"%";}};hi.src="apex_original_characters.webp";
  const panel=document.getElementById("portraitPanel");if(panel)panel.style.display="none";
 }
 function characterSvg(code){
@@ -177,8 +178,8 @@ async function shareCardBlob(){
  x.fillStyle="#ff9b45";x.font="bold 27px sans-serif";x.fillText("CHARACTER / "+legend.name,65,418);
  x.fillStyle="#c5cdd5";x.font="22px sans-serif";x.fillText("STRENGTH  "+p[2],65,492);x.fillText("ROLE  "+p[4],65,532);
  x.fillStyle="#8f9ba8";x.font="17px sans-serif";x.fillText("YOUR STYLE. YOUR CHARACTER. / ORIGINAL CHARACTER PROJECT",65,610);
- const img=await legendImg(characterUrl(lastCode));
- if(img){try{x.drawImage(img,735,120,385,385);x.getImageData(0,0,1,1);}catch(e){return await fallbackCard();}}
+ const sprite=await legendImg("apex_original_characters.webp");const img=sprite||await legendImg(characterUrl(lastCode));
+ if(img){try{if(sprite){const sw=img.naturalWidth/4,sh=img.naturalHeight/4;x.drawImage(img,(artIndex(lastCode)%4)*sw,Math.floor(artIndex(lastCode)/4)*sh,sw,sh,735,120,385,385);}else{x.drawImage(img,735,120,385,385);}x.getImageData(0,0,1,1);}catch(e){return await fallbackCard();}}
  else{drawFallback(x,legend);}
  x.fillStyle="#ff9b45";x.font="bold 22px sans-serif";x.fillText(legend.name,770,555);
  return new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(Error("PNG生成失敗")),"image/png"));
